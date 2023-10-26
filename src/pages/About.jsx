@@ -23,7 +23,7 @@ const About = () => {
     <div className="container p-4 d-flex flex-column  align-items-center  justify-content-center  text-center gap-5 ">
       <img src="/images/foodbanner.jpg" alt="" className=" img-fluid w-50  " />
       <h1 className="nav-link logo fw-bold  fs-1">TastyVoyage.</h1>
-      <div className="d-flex   align-items-center  justify-content-center gap-2 rounded-2 ">
+      <div className="d-flex  flex-wrap   align-items-center  justify-content-center gap-2 rounded-2 ">
         {contents.map((item, index) => (
           <div key={index} className="bg-light p-4 rounded-4 ">
             <h6 className="text-color">{item.title}</h6>

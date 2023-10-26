@@ -9,7 +9,7 @@ import { CommentContextProvider } from "./context/commentContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  // <React.StrictMode>
+  <React.StrictMode>
   <AuthContextProvider>
     <ProductContextProvider>
       <CommentContextProvider>
@@ -17,5 +17,5 @@ root.render(
       </CommentContextProvider>
     </ProductContextProvider>
   </AuthContextProvider>
-  // </React.StrictMode>
+  </React.StrictMode>
 );

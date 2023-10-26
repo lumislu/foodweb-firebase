@@ -35,6 +35,7 @@ const Search = () => {
       setSearchResults(findItems);
     }
   }, 2000);
+
   // 選擇要搜索的項目
   const chooseQueryItem = (item) => {
     setQuery(item.title);
@@ -45,13 +46,14 @@ const Search = () => {
   const handleFocusBlur = debounce(() => {
     setIsFocused(false);
     setOpenSearch(false);
-    // if (isFocused) {
-    //   setQuery("");
-    // }
+    if (isFocused) {
+      setQuery("");
+    }
   }, 200);
 
   //提交搜尋
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (query) {
       navigate(`/search/${query}`);
     }
@@ -59,7 +61,9 @@ const Search = () => {
 
   const handleinput = (e) => {
     setQuery(e.target.value);
-    debounceSearchResults(e.target.value);
+    if (query.trim() !== "") {
+      debounceSearchResults(e.target.value);
+    }
   };
   // console.log(sortedItems);
 
@@ -96,22 +100,21 @@ const Search = () => {
         )}
       </div>
 
-      {isFocused && query !== "" && (
+      {isFocused && query.trim() !== "" && searchResults.length !== 0 && (
         <div
           className="position-absolute bg-white d-flex flex-column z-1 w-75"
           style={{ top: "2.5rem", right: "0.5rem" }}
         >
-          {searchResults.length !== 0 &&
-            searchResults.map((item) => (
-              <Link
-                to={`/products/${item.id}`}
-                className="btn font-sm bg-white btn-outline-secondary border-0 rounded-0"
-                key={item.id}
-                onClick={() => chooseQueryItem(item)}
-              >
-                {item.title}
-              </Link>
-            ))}
+          {searchResults.map((item) => (
+            <Link
+              to={`/products/${item.id}`}
+              className="btn font-sm bg-white btn-outline-secondary border-0 rounded-0"
+              key={item.id}
+              onClick={() => chooseQueryItem(item)}
+            >
+              {item.title}
+            </Link>
+          ))}
         </div>
       )}
     </div>
