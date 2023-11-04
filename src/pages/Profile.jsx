@@ -52,9 +52,11 @@ const Profile = () => {
   const [orderdata, setOrderData] = useState([]);
 
   const fetchData = async () => {
-    const orderdata = await getUserOderData();
-    setOrderData(orderdata);
-    setLoading(false);
+    if (user) {
+      const orderdata = await getUserOderData();
+      setOrderData(orderdata);
+      setLoading(false);
+    }
   };
   const [isfilter, setIsFilter] = useState("最舊");
   const filterBtns = ["最新", "最舊"];
@@ -90,7 +92,7 @@ const Profile = () => {
   useEffect(() => {
     setLoading(true);
     fetchData();
-  }, []);
+  }, [user]);
 
   const scrollToTarget = (targetRef) => {
     if (targetRef.current) {

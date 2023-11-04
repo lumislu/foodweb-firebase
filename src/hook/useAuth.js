@@ -10,6 +10,7 @@ import {
   getDoc,
   getDocs,
   query,
+  where,
 } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
@@ -209,8 +210,15 @@ export const useAuth = () => {
   const getUserOderData = async () => {
     setLoading(true);
     try {
+      if (user === null) {
+        return;
+      }
+      const userUID = user.uid;
       const ordersCollection = collection(db, "orders");
-      const userOrdersQuery = query(ordersCollection, user.uid);
+      const userOrdersQuery = query(
+        ordersCollection,
+        where("userUID", "==", userUID)
+      );
       const querySnapshot = await getDocs(userOrdersQuery);
       const allOrders = [];
       querySnapshot.forEach((doc) => {
@@ -228,7 +236,7 @@ export const useAuth = () => {
 
         setLoading(false);
       });
-
+      console.log("得到訂單資料");
       return allOrders;
     } catch (error) {
       console.error(error);

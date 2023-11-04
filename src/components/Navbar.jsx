@@ -1,5 +1,5 @@
 import { AiOutlineUser, AiOutlineShopping } from "react-icons/ai";
-import { HiOutlineBars3} from "react-icons/hi2";
+import { HiOutlineBars3 } from "react-icons/hi2";
 import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useAuthContext } from "../context/authContext";
@@ -8,7 +8,7 @@ import { useProductContext } from "../context/productContext";
 import Search from "./Search";
 
 const Navbar = () => {
-  const {  cartItems} = useProductContext();
+  const { cartItems } = useProductContext();
   const { user, alreadyLogin } = useAuthContext();
   const { logOut } = useAuth();
 
@@ -128,12 +128,14 @@ const Navbar = () => {
         {/* navbarbtn  lists*/}
         {openNavbar && (
           <div
-            className=" position-absolute start-0  w-100  d-flex d-md-none  flex-column   justify-content-center  text-center bg-light   mt-3  py-3 z-2  "
+            className=" position-absolute start-0  w-100  d-flex d-md-none  flex-column   justify-content-center  text-center bg-light   mt-3  py-3 z-2  rounded-4  "
             onMouseEnter={() => setOpenNavbar(true)}
             onMouseLeave={() => setOpenNavbar(false)}
           >
             <div className="d-flex flex-column  ">
-              <span className="font-sm">Hi,{user.displayName}</span>
+              {user.displayName && (
+                <span className="font-sm">Hi,{user.displayName}</span>
+              )}
               <Link
                 to={"/profile"}
                 className="btn btn-light  py-2 text-color font-sm"

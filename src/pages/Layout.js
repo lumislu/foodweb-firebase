@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 
 import React from "react";
-import HeaderNav from "../components/Navbar";
+import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const Layout = () => {
@@ -10,7 +10,7 @@ const Layout = () => {
       className=" min-vh-100 container d-flex flex-column p-0 "
       style={{ maxWidth: "1600px" }}
     >
-      <HeaderNav />
+      <Navbar />
       <Outlet />
       <Footer />
     </div>

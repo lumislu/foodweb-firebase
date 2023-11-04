@@ -20,18 +20,29 @@ const About = () => {
     },
   ];
   return (
-    <div className="container p-4 d-flex flex-column  align-items-center  justify-content-center  text-center gap-5 ">
-      <img src="/images/foodbanner.jpg" alt="" className=" img-fluid w-50  " />
-      <h1 className="nav-link logo fw-bold  fs-1">TastyVoyage.</h1>
-      <div className="d-flex  flex-wrap   align-items-center  justify-content-center gap-2 rounded-2 ">
-        {contents.map((item, index) => (
-          <div key={index} className="bg-light p-4 rounded-4 ">
-            <h6 className="text-color">{item.title}</h6>
-            <span className="font-sm">{item.des}</span>
+    <div className="container text-center p-4 flex-grow-1 my-5 ">
+      <div className="row g-5">
+        <h1 className="nav-link logo fw-bold  fs-1">About Us</h1>
+        <figure className="col-md-6">
+          <img
+            src="/images/foodbanner.jpg"
+            alt=""
+            className="w-100 h-100 object-fit-cover rounded-5  "
+          />
+        </figure>
+        <div className="col-md-6">
+          <h1 className=" nav-link logo fw-bold  fs-1">TastyVoyage.</h1>
+          <div className="col gy-5 ">
+            {contents.map((item, index) => (
+              <div key={index} className=" col-sm-12 p-4 ">
+                <h6 className="text-color fs-5">{item.title}</h6>
+                <span>{item.des}</span>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+        <h5>謝謝您的支持，我們期待與您相聚在TastyVoyage！</h5>
       </div>
-      <p>謝謝您的支持，我們期待與您相聚在TastyVoyage！</p>
     </div>
   );
 };
